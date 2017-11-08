@@ -223,6 +223,13 @@ terminate:
     return;
 }
 
+inline void vm_set_temp_value(vm_env *env, int pos, int val)
+{
+    vm_value v = {.type = INT};
+    v.value.vint = val;
+    env->temps[pos] = v;
+}
+
 static int vm_insts_seg_inflate(vm_env *env, char *mem, size_t sz)
 {
     memset(&env->insts[0], 0, sizeof(env->insts));
